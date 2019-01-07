@@ -1,9 +1,9 @@
-package com.demo.zc.service.impl;
+package com.zc.service.impl;
 
-import com.demo.zc.base.Sbd;
-import com.demo.zc.mapper.primary.SbdMapper;
-import com.demo.zc.mapper.secondary.SecondarySbdMapper;
-import com.demo.zc.service.SbdService;
+import com.zc.base.Sbd;
+import com.zc.mapper.primary.SbdMapper;
+import com.zc.mapper.secondary.SecondarySbdMapper;
+import com.zc.service.SbdService;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

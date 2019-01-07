@@ -1,7 +1,7 @@
-package com.demo.zc.mapper.primary;
+package com.zc.mapper.primary;
 
-import com.demo.zc.base.Sbd;
-import com.demo.zc.conf.ConfigMapper;
+import com.zc.base.Sbd;
+import com.zc.conf.ConfigMapper;
 
 import java.util.List;
 

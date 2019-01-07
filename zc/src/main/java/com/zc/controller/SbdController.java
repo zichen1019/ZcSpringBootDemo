@@ -1,7 +1,8 @@
-package com.demo.zc.controller;
+package com.zc.controller;
 
-import com.demo.zc.base.Sbd;
-import com.demo.zc.service.SbdService;
+import com.alibaba.druid.stat.DruidStatManagerFacade;
+import com.zc.base.Sbd;
+import com.zc.service.SbdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,6 +32,15 @@ public class SbdController {
     @ResponseBody
     public List<Sbd> findAll3(){
         return sbdService.findAll3();
+    }
+
+    /**
+     * 返回druid配置
+     * @return
+     */
+    @RequestMapping("/stat")
+    public Object stat(){
+        return DruidStatManagerFacade.getInstance().getDataSourceStatDataList();
     }
 
 }

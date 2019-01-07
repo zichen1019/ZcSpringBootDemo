@@ -1,4 +1,4 @@
-package com.demo.zc.common.utils;
+package com.zc.common.utils;
 
 import java.io.*;
 import java.util.List;

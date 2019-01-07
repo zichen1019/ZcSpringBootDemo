@@ -1,6 +1,6 @@
-package com.demo.zc.service;
+package com.zc.service;
 
-import com.demo.zc.base.Sbd;
+import com.zc.base.Sbd;
 
 import java.util.List;
 

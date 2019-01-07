@@ -1,4 +1,4 @@
-package com.demo.zc.conf;
+package com.zc.conf;
 
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.common.MySqlMapper;

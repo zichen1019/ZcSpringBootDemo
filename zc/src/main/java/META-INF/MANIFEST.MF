@@ -1,2 +1,2 @@
 Manifest-Version: 1.0
-Premain-Class: com.demo.zc.AgentSsist.Agent
+Premain-Class: com.zc.AgentSsist.Agent

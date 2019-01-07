@@ -1,4 +1,4 @@
-package com.demo.zc.base;
+package com.zc.base;
 
 import lombok.Getter;
 import lombok.Setter;

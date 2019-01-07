@@ -1,8 +1,8 @@
-package com.demo.zc.controller;
+package com.zc.controller;
 
-import com.demo.zc.ZcApplicationTests;
-import com.demo.zc.base.Sbd;
-import com.demo.zc.service.SbdService;
+import com.zc.ZcApplicationTests;
+import com.zc.base.Sbd;
+import com.zc.service.SbdService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

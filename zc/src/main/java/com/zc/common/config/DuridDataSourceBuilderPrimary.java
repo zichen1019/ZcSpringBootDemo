@@ -1,8 +1,6 @@
-package com.demo.zc.common.config;
+package com.zc.common.config;
 
-import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
-import com.github.pagehelper.PageHelper;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -19,7 +17,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(basePackages = "com.demo.zc.mapper.primary", sqlSessionTemplateRef = "primarySqlSessionTemplate")
+@MapperScan(basePackages = "com.zc.mapper.primary", sqlSessionTemplateRef = "primarySqlSessionTemplate")
 public class DuridDataSourceBuilderPrimary {
 
     @Bean(name = "primaryDruidDataSource")
