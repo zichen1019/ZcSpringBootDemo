@@ -10,6 +10,10 @@ server:
       timeout: 30M
 
 spring:
+  # 此处AOP配置，是druid的Spring监控所需要
+  aop:
+    auto: true
+    proxy-target-class: true
   datasource:
     druid:
       # 连接池公用条件
@@ -67,7 +71,7 @@ spring:
       #connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
 
       # Spring监控AOP切入点，如x.y.z.service.*,配置多个英文逗号分隔
-      # aop-patterns: com.zc.controller. # 此语句暂不生效-不知为何
+      aop-patterns: com.zc.controller.*,com.zc.service.*,com.zc.service.*.*,com.zc.mapper.*.*
 
       type: com.alibaba.druid.pool.DruidDataSource
       # 当连接池空闲时间超过8小时，数据库连接就会自动断掉，为了避免这种情况，还需要在yml文件下加入如下配置
