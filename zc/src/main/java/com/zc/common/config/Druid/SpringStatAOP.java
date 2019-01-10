@@ -1,4 +1,4 @@
-package com.zc.common.config;
+package com.zc.common.config.Druid;
 
 import com.alibaba.druid.support.spring.stat.DruidStatInterceptor;
 import org.springframework.aop.support.DefaultPointcutAdvisor;

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zc.mapper.secondary.SecondarySbdMapper">
+<mapper namespace="com.zc.mapper.secondary.SecondarySbdMapperConfig">
 
     <select id="findAll" resultType="com.zc.base.Sbd">
       select id,text from sbd

@@ -1,4 +1,4 @@
-package com.zc.common.config;
+package com.zc.common.config.Druid;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;

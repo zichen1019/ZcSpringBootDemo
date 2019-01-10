@@ -1,4 +1,4 @@
-package com.zc.common.config;
+package com.zc.common.config.Druid;
 
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import org.apache.ibatis.session.SqlSessionFactory;
