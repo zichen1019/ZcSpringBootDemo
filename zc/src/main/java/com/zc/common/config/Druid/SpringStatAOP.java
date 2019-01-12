@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
 /**
+ * 访问地址例如：http://127.0.0.1:9091/zc/druid/index.html 登录用户名及密码在application.yml的配置中
  * 由于目前不知道如何在yml中配置druid的Spring Stat监控
  * 所以暂时使用当前类暂代.
  */

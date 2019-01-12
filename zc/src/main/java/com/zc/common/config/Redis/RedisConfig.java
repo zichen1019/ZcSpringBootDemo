@@ -20,7 +20,9 @@ import java.net.UnknownHostException;
 import java.util.HashSet;
 import java.util.Set;
 
-
+/**
+ * 先启动Redis集群控制台，或者将其安装成服务
+ */
 @Configuration
 @ConditionalOnClass({JedisCluster.class})
 public class RedisConfig {

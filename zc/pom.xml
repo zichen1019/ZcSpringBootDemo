@@ -114,6 +114,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
+
+        <!-- Swagger2	接口文档	2.9.2 -->
+        <dependency>
+            <groupId>io.github.wilson-he</groupId>
+            <artifactId>swagger2-spring-boot-starter</artifactId>
+            <version>LATEST</version>
+        </dependency>
+
     </dependencies>
 
     <!-- 构建项目需要的信息 -->

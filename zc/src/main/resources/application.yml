@@ -192,3 +192,33 @@ logging:
     com.demo.zc.mapper: trace # 打印sql
 #    root: info
 #    tk.mybatis: trace
+
+swagger:
+  enabled: true
+  docket:
+    api-info:
+      description: API文档
+      title: 梓晨-API
+      version: 1.0.1
+      contact:
+        name: zc
+        email: 1510748736@qq.com
+        url: www.baidu.com
+      license: 禁止未经主人同意私自传播
+      license-url: https://www.baidu.com
+    group-name: Demo模块
+    base-package: com.zc
+  dockets:
+    docket-redis:
+      group-name: Redis模块
+      api-info:
+        description: Redis-API
+        title: zc-Redis
+        version: 1.0.2
+        contact:
+          name: zcRedis
+          email: 1510748736@qq.com
+          url: https://www.baidu.com
+        license: 禁止未经主人同意私自传播！
+        license-url: https://www.baidu.com
+      base-package: com.zc
