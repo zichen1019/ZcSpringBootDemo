@@ -5,7 +5,7 @@
 <mapper namespace="com.zc.mapper.primary.SbdMapperConfig">
 
     <select id="findAll" resultType="com.zc.base.Sbd">
-      select id,text from sbd
+      select * from sbd
     </select>
 
 </mapper>

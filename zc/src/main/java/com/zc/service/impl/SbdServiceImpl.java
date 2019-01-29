@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@SuppressWarnings("ALL")
 @Service
 public class SbdServiceImpl extends ServiceImplConfig implements SbdService {
 
@@ -24,7 +25,7 @@ public class SbdServiceImpl extends ServiceImplConfig implements SbdService {
     public List<Sbd> findAll() {
         PageHelper.startPage(0,10);
         Sbd sbd = new Sbd();
-        sbd.setId("6666666666");
+        sbd.setAnnalid("6666666666");
         List<Sbd> sbds = primarySbdMapper.select(sbd);
         return sbds;
     }

@@ -1,5 +1,6 @@
 package com.zc.controller;
 
+import com.zc.conf.ControllerConfig;
 import com.zc.service.RedisService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Api(tags = "Redis处理器")
 @RequestMapping("/redis")
-public class RedisController {
+public class RedisController extends ControllerConfig {
 
     @Autowired
     private RedisService redisService;

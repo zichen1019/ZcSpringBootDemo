@@ -2,6 +2,7 @@ package com.zc.controller;
 
 import com.alibaba.druid.stat.DruidStatManagerFacade;
 import com.zc.base.Sbd;
+import com.zc.conf.ControllerConfig;
 import com.zc.service.SbdService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @Api(tags = "测试处理器")
 @RestController
 @RequestMapping("/demo")
-public class SbdController {
+public class SbdController extends ControllerConfig {
 
     @Autowired
     private SbdService sbdService;

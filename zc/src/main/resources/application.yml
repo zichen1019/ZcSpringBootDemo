@@ -5,15 +5,15 @@ server:
   #生产环境
   #port: 8080
   servlet:
-    context-path: /zc
+    context-path: /api
     session:
       timeout: 30M
 
 
 spring:
   redis:
-    port: 6379 # Redis服务器连接端口
-    host: 192.168.1.130 # Redis服务器地址
+    port: 9527 # Redis服务器连接端口
+    host: 127.0.0.1 # Redis服务器地址
     password: # Redis服务器连接密码（默认为空）
     timeout: 5 # 连接超时时间（毫秒）
     commandTimeout: 5000 # 连接超时时间（毫秒）
@@ -100,24 +100,24 @@ spring:
       time-between-eviction-runs-millis: 18800
       # 默认数据库
       primary:
-        #   济南正式数据库
-        url: jdbc:mysql://127.0.0.1:3309/sbdemo1?useUnicode=true&characterEncoding=utf8&useSSL=false
-        username: root
+        # 服务器数据库
+        url: jdbc:mysql://120.78.185.208:3306/zcspringbootdemo?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: zichen
         password: root
         driver-class-name: com.mysql.jdbc.Driver
 
       # 自定义数据库
       secondary:
-        #  济南本地 mysql8
-        url: jdbc:mysql://127.0.0.1:3306/sbdemo1?useSSL=FALSE&serverTimezone=CTT
+        #  本地 mysql5
+        url: jdbc:mysql://127.0.0.1:3306/zcspringbootdemo?useUnicode=true&characterEncoding=utf8&useSSL=false
         jdbc-url: jdbc:mysql://127.0.0.1:3306/sbdemo1?useSSL=FALSE&serverTimezone=CTT
         username: root
         password: root
 
 
-#     测试数据库
-#     url: jdbc:mysql://127.0.0.1:3306/sbdemo1?useSSL=FALSE&serverTimezone=UTC
-#     jdbc-url: jdbc:mysql://127.0.0.1:3306/sbdemo1?useSSL=FALSE&serverTimezone=UTC
+#     mysql 8
+#     url: jdbc:mysql://127.0.0.1:3306/sbdemo1?useSSL=FALSE&serverTimezone=CTT
+#     jdbc-url: jdbc:mysql://127.0.0.1:3306/sbdemo1?useSSL=FALSE&serverTimezone=CTT
 #     username: root
 #     password: root
 #     driver-class-name: com.mysql.cj.jdbc.Driver

@@ -2,10 +2,10 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zc.mapper.secondary.SecondarySbdMapperConfig">
+<mapper namespace="com.zc.mapper.primary.UserMapperConfig">
 
-    <select id="findAll" resultType="com.zc.base.Sbd">
-      select * from sbd
+    <select id="findAll" resultType="com.zc.base.User">
+      select * from sys_user
     </select>
 
 </mapper>
