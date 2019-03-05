@@ -1,10 +1,14 @@
 package com.zc.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.zc.base.Role;
 import com.zc.base.StatusCode;
 import com.zc.base.User;
 import com.zc.common.utils.JWTUtil;
 import com.zc.conf.ServiceImplConfig;
+import com.zc.mapper.primary.RoleMapperConfig;
 import com.zc.mapper.primary.UserMapperConfig;
 import com.zc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("ALL")
@@ -21,6 +26,9 @@ public class UserServiceImpl extends ServiceImplConfig implements UserService {
 
     @Autowired
     private UserMapperConfig userMapperConfig;
+
+    @Autowired
+    private RoleMapperConfig roleMapperConfig;
 
     @Autowired
     private HttpServletRequest requests;
@@ -68,12 +76,22 @@ public class UserServiceImpl extends ServiceImplConfig implements UserService {
         System.out.println("jedisCluster:::" + jedisCluster.get(CSRFTOKEN.split(":zc:")[0]));
         User user = JSON.parseObject(userstr, User.class);
         user = userMapperConfig.selectOne(user);
+
         if(user != null) {
             String ujson = JSON.toJSONString(user);
+            JSONObject userjson = JSON.parseObject(ujson);
+            Role role = new Role();
+            role.setUserid(user.getAnnalid());
+            List<Role> roles = roleMapperConfig.select(role);
+            JSONArray roleArray = new JSONArray();
+            for(Role r : roles){
+                roleArray.add(r.getCode());
+            }
             Map<String, Object> map =JWTUtil.Encrypted(ujson);
             String token = (String) map.get("miwen");
             jedisCluster.set(token, (String) map.get("key"));
-            SUCCESS.put("user", user);
+            userjson.put("roles", roleArray);
+            SUCCESS.put("user", userjson);
             return SUCCESS;
         }
         return DataAndStatus("success", StatusCode.ERROR);
