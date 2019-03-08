@@ -29,6 +29,7 @@ public class FileUtil {
      *                  仅当println()方法被调用时才自动清缓冲区，而不是像PrintStream一样遇到一个换行符就清缓冲。
      */
     public static void PrintWriter(String fileName, List<String> contentList, boolean autoNewLine, boolean append, boolean autoFlush){
+        checkFloadExists(fileName.substring(0, fileName.lastIndexOf("\\")));
         PrintWriter pw  = null;
         try {
             pw = new PrintWriter(new BufferedWriter(new FileWriter(fileName, append)), autoFlush);
@@ -39,6 +40,23 @@ public class FileUtil {
                     pw.print(content);
                 }
             }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            if(pw != null){
+                pw.close();
+            }
+        }
+    }
+
+    public static void PrintWriter(String fileName, String toast, boolean autoNewLine, boolean append, boolean autoFlush){
+        checkFloadExists(fileName.substring(0, fileName.lastIndexOf("\\")));
+        PrintWriter pw  = null;
+        try {
+            pw = new PrintWriter(new BufferedWriter(new FileWriter(fileName, append)), autoFlush);
+            pw.println(toast);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -60,6 +78,7 @@ public class FileUtil {
      * @param autoFlush 自动清空缓存：autoFlush置为true时，每当输出遇到换行符，缓冲区的内容就被强制全部输出，如同调用了一次flush()。但要注意，如果没遇到换行符，还是会有数据“憋”在缓冲区里
      */
     public static void PrintStream(String fileName, List<String> contentList, boolean autoNewLine, boolean append, boolean autoFlush){
+        checkFloadExists(fileName.substring(0, fileName.lastIndexOf("\\")));
         PrintStream ps = null;
         try {
             ps = new PrintStream(new FileOutputStream(fileName, append), autoFlush);
@@ -70,6 +89,21 @@ public class FileUtil {
                     ps.print(content);
                 }
             }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }finally {
+            if(ps != null){
+                ps.close();
+            }
+        }
+    }
+
+    public static void PrintStream(String fileName, String toast, boolean autoNewLine, boolean append, boolean autoFlush){
+        checkFloadExists(fileName.substring(0, fileName.lastIndexOf("\\")));
+        PrintStream ps = null;
+        try {
+            ps = new PrintStream(new FileOutputStream(fileName, append), autoFlush);
+            ps.println(toast);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }finally {
@@ -117,4 +151,16 @@ public class FileUtil {
         }
         return sb.toString();
     }
+
+    /**
+     * 检查路径是否存在，然后创建层级文件夹
+     * @param path 路径
+     */
+    public static void checkFloadExists(String path){
+        File file = new File(path);
+        if(!file.exists()){
+            file.mkdirs();
+        }
+    }
+
 }
