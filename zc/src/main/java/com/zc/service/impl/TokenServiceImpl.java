@@ -1,6 +1,7 @@
 package com.zc.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.zc.base.User;
 import com.zc.common.utils.JWTUtil;
 import com.zc.conf.ServiceImplConfig;
@@ -17,7 +18,7 @@ import java.util.Random;
 public class TokenServiceImpl extends ServiceImplConfig implements TokenService {
 
     @Override
-    public Map getToken(HttpServletRequest request) {
+    public JSONObject getToken(HttpServletRequest request) {
         User u = new User();
 
         StringBuilder sb = new StringBuilder();

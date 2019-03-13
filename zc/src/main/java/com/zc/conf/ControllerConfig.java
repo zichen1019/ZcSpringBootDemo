@@ -1,21 +1,14 @@
 package com.zc.conf;
 
-import com.zc.base.StatusCode;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 public class ControllerConfig {
 
-    protected final static String RESULTTOAST = "result";
+    protected final static String RESULTTOAST = "success";
 
-    protected static Map<String, Object> RESULT;
+    protected static JSONObject RESULT;
 
 //    protected HttpSession SESSION;
 //
@@ -25,8 +18,7 @@ public class ControllerConfig {
 //    protected HttpServletRequest request;
 
     public ControllerConfig(){
-        RESULT = new HashMap<>();
-        RESULT.put(RESULTTOAST, StatusCode.SUCCESS);
+        RESULT = new JSONObject();
         /*SESSION = request.getSession();
         Cookie[] cookies = request.getCookies();
         for(Cookie cookie : cookies){

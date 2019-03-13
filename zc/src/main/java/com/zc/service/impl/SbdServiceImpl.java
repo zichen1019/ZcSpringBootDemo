@@ -9,6 +9,7 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @SuppressWarnings("ALL")
@@ -25,7 +26,7 @@ public class SbdServiceImpl extends ServiceImplConfig implements SbdService {
     public List<Sbd> findAll() {
         PageHelper.startPage(0,10);
         Sbd sbd = new Sbd();
-        sbd.setAnnalid("6666666666");
+        sbd.setAnnalid(BigInteger.valueOf(66666));
         List<Sbd> sbds = primarySbdMapper.select(sbd);
         return sbds;
     }

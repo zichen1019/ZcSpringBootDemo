@@ -1,15 +1,15 @@
 package com.zc.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zc.base.User;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
 
 public interface UserService {
 
-    Map login(User user, HttpServletRequest request);
+    JSONObject login(User user, HttpServletRequest request);
 
-    Map register(User user);
+    JSONObject register(User user);
 
-    Map getInfo(String CSRFTOKEN, HttpServletRequest request);
+    JSONObject getInfo(String CSRFTOKEN, HttpServletRequest request);
 }

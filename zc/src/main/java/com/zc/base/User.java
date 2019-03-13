@@ -4,14 +4,15 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.stereotype.Service;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
 
 @ApiModel("用户")
 @Table(name = "sys_user")
+@ToString
 public class User extends Base {
 
     @ApiModelProperty("用户名")
@@ -38,7 +39,7 @@ public class User extends Base {
     @ApiModelProperty("性别")
     @Column(name = "gender")
     @Getter @Setter
-    private boolean gender;
+    private Boolean gender;
 
     @ApiModelProperty("生日")
     @Column(name = "birday")
@@ -54,13 +55,4 @@ public class User extends Base {
     @Column(name = "addres")
     @Getter @Setter
     private String addres;
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "nickName='" + nickname + '\'' +
-                ", userName='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
 }

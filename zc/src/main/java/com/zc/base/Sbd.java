@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @ApiModel("数据库表字段对应测试类 - Sbd")
 @Table

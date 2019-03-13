@@ -1,10 +1,11 @@
 package com.zc.service;
 
+import com.alibaba.fastjson.JSONObject;
+
 import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
 
 public interface TokenService {
 
-    Map getToken(HttpServletRequest request);
+    JSONObject getToken(HttpServletRequest request);
 
 }

@@ -102,7 +102,7 @@ spring:
       primary:
         # 服务器数据库
         url: jdbc:mysql://120.78.185.208:3306/zcspringbootdemo?useUnicode=true&characterEncoding=utf8&useSSL=false
-        username: zichen
+        username: zichenGS
         password: root
         driver-class-name: com.mysql.jdbc.Driver
 
@@ -161,12 +161,12 @@ spring:
 
 
 #mybatis扫描路径
-#mybatis:
-#  type-aliases-package: com.demo.zc.mapper.*
-#  mapper-locations: classpath:mapper-xml/*/*.xml
+mybatis:
+  type-aliases-package: com.demo.zc.mapper.*
+  mapper-locations: classpath:mapper-xml/*/*.xml
 # 打印sql
-#  configuration:
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 打印sql
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 打印sql
 # 打印sql 方法二
 #  logging:
 #    level:
@@ -208,17 +208,17 @@ swagger:
       license-url: https://www.baidu.com
     group-name: Demo模块
     base-package: com.zc
-  dockets:
-    docket-redis:
-      group-name: Redis模块
-      api-info:
-        description: Redis-API
-        title: zc-Redis
-        version: 1.0.2
-        contact:
-          name: zcRedis
-          email: 1510748736@qq.com
-          url: https://www.baidu.com
-        license: 禁止未经主人同意私自传播！
-        license-url: https://www.baidu.com
-      base-package: com.zc
+#  dockets:
+#    docket-redis:
+#      group-name: Redis模块
+#      api-info:
+#        description: Redis-API
+#        title: zc-Redis
+#        version: 1.0.2
+#        contact:
+#          name: zcRedis
+#          email: 1510748736@qq.com
+#          url: https://www.baidu.com
+#        license: 禁止未经主人同意私自传播！
+#        license-url: https://www.baidu.com
+#      base-package: com.zc

@@ -34,7 +34,7 @@ public class UserServiceImpl extends ServiceImplConfig implements UserService {
     private HttpServletRequest requests;
 
     @Override
-    public Map login(User user, HttpServletRequest request) {
+    public JSONObject login(User user, HttpServletRequest request) {
         String bcpePassword = user.getPassword();//new BCryptPasswordEncoder().encode(user.getPassword());
         user.setPassword(bcpePassword);
         User u = userMapperConfig.selectOne(user);
@@ -43,34 +43,32 @@ public class UserServiceImpl extends ServiceImplConfig implements UserService {
             Map<String, Object> map =JWTUtil.Encrypted(ujson);
             String token = (String) map.get("miwen");
             jedisCluster.set(token, (String) map.get("key"));
-            userMapperConfig.updateByPrimaryKeySelective(u);
-            SUCCESS.put("token", token+":zc:"+map.get("key"));
-            return SUCCESS;
+            // userMapperConfig.updateByPrimaryKeySelective(u);
+            return SUCCESS.fluentPut("token", token+":zc:"+map.get("key")).fluentPut("success", StatusCode.SUCCESS);
         }
-        return DataAndStatus("success", StatusCode.ERROR);
+        return SUCCESS.fluentPut("success", StatusCode.ERROR);
     }
 
     @Override
-    public Map register(User user) {
+    public JSONObject register(User user) {
         User u = new User();
         u.setUsername(user.getUsername());
         u = userMapperConfig.selectOne(u);
         if(u != null){
-            SUCCESS.put("error", StatusCode.USER_ALREADY_EXISTS);
-            return DataAndStatus("success", StatusCode.ERROR);
+            return SUCCESS.fluentPut("error", StatusCode.USER_ALREADY_EXISTS).fluentPut("success", StatusCode.ERROR);
         }
         String bcpePassword = user.getPassword();//new BCryptPasswordEncoder().encode(user.getPassword());
         user.setPassword(bcpePassword);
         user.setCreateDate(new Date());
         int count = userMapperConfig.insert(user);
         if(count == 1){
-            return SUCCESS;
+            return SUCCESS.fluentPut("success", StatusCode.SUCCESS);
         }
-        return DataAndStatus("success", StatusCode.ERROR);
+        return SUCCESS.fluentPut("success", StatusCode.ERROR);
     }
 
     @Override
-    public Map getInfo(String CSRFTOKEN, HttpServletRequest request) {
+    public JSONObject getInfo(String CSRFTOKEN, HttpServletRequest request) {
         CSRFTOKEN = request.getHeader("x-csrftoken");
         String userstr = JWTUtil.Payload(CSRFTOKEN.split(":zc:")[0], CSRFTOKEN.split(":zc:")[1]);
         System.out.println("jedisCluster:::" + jedisCluster.get(CSRFTOKEN.split(":zc:")[0]));
@@ -91,9 +89,8 @@ public class UserServiceImpl extends ServiceImplConfig implements UserService {
             String token = (String) map.get("miwen");
             jedisCluster.set(token, (String) map.get("key"));
             userjson.put("roles", roleArray);
-            SUCCESS.put("user", userjson);
-            return SUCCESS;
+            return SUCCESS.fluentPut("success", StatusCode.SUCCESS).fluentPut("user", userjson);
         }
-        return DataAndStatus("success", StatusCode.ERROR);
+        return SUCCESS.fluentPut("success", StatusCode.ERROR);
     }
 }
