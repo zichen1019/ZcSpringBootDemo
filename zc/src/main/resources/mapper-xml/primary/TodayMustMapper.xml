@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="com.zc.mapper.primary.TodayMustMapperConfig">
+
+    <!--分页查询-->
+    <select id="getTodayMustList" resultType="com.zc.base.TodayMust">
+        SELECT * FROM today_must
+        <where>
+            <if test="title != null">
+                and title like concat('%', #{title, jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="complete != null">
+                and complete = #{complete, jdbcType=BIT}
+            </if>
+        </where>
+    </select>
+
+</mapper>
