@@ -9,7 +9,7 @@ public class RedisServiceImpl extends ServiceImplConfig implements RedisService 
 
     @Override
     public String redisA() {
-        jedisCluster.set("redisA","zc say Hello!");
+        jedisCluster.set("redisA", "zc say Hello!");
         return jedisCluster.get("redisA");
     }
 

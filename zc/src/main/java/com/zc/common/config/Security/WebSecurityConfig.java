@@ -1,6 +1,7 @@
 package com.zc.common.config.Security;
 
-public class WebSecurityConfig{}
+public class WebSecurityConfig {
+}
 /*
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;

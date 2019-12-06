@@ -19,7 +19,7 @@ public class RedisController extends ControllerConfig {
 
     @ApiOperation("Reids测试请求-redisA")
     @GetMapping(value = "/redisA")
-    public String redisA(){
+    public String redisA() {
         return redisService.redisA();
     }
 

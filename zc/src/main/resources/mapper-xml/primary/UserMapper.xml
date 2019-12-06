@@ -5,7 +5,7 @@
 <mapper namespace="com.zc.mapper.primary.UserMapperConfig">
 
     <select id="findAll" resultType="com.zc.base.User">
-      select * from sys_user
+        select * from sys_user
     </select>
 
 </mapper>

@@ -22,7 +22,7 @@ public class DuridDataSourceBuilderSecondary {
 
     @Bean(name = "secondaryDruidDataSource")
     @ConfigurationProperties(prefix = "spring.datasource.druid.secondary")
-    public DataSource testDataSource(){
+    public DataSource testDataSource() {
         return DruidDataSourceBuilder.create().build();
     }
 

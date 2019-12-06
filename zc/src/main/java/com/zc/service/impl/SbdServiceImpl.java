@@ -24,9 +24,9 @@ public class SbdServiceImpl extends ServiceImplConfig implements SbdService {
 
     @Override
     public List<Sbd> findAll() {
-        PageHelper.startPage(0,10);
+        PageHelper.startPage(0, 10);
         Sbd sbd = new Sbd();
-        sbd.setAnnalid(BigInteger.valueOf(66666));
+        sbd.setId(Long.valueOf(66666));
         List<Sbd> sbds = primarySbdMapper.select(sbd);
         return sbds;
     }

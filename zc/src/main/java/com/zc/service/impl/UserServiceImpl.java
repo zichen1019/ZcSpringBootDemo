@@ -14,6 +14,9 @@ import com.zc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
+import tk.mybatis.mapper.weekend.Weekend;
+import tk.mybatis.mapper.weekend.WeekendCriteria;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -35,16 +38,17 @@ public class UserServiceImpl extends ServiceImplConfig implements UserService {
 
     @Override
     public JSONObject login(User user, HttpServletRequest request) {
-        String bcpePassword = user.getPassword();//new BCryptPasswordEncoder().encode(user.getPassword());
-        user.setPassword(bcpePassword);
-        User u = userMapperConfig.selectOne(user);
-        if(u != null){
+        Weekend<User> userWeekend = Weekend.of(User.class);
+        WeekendCriteria<User, Object> userObjectWeekendCriteria = userWeekend.weekendCriteria();
+        userObjectWeekendCriteria.andEqualTo(User::getUsername, user.getUsername());
+        userObjectWeekendCriteria.andEqualTo(User::getPassword, user.getPassword());
+        User u = userMapperConfig.selectOneByExample(userWeekend);
+        if (u != null) {
             String ujson = JSON.toJSONString(u);
-            Map<String, Object> map =JWTUtil.Encrypted(ujson);
+            Map<String, Object> map = JWTUtil.encrypted(ujson);
             String token = (String) map.get("miwen");
             jedisCluster.set(token, (String) map.get("key"));
-            // userMapperConfig.updateByPrimaryKeySelective(u);
-            return SUCCESS.fluentPut("token", token+":zc:"+map.get("key")).fluentPut("success", StatusCode.SUCCESS);
+            return SUCCESS.fluentPut("token", token + ":zc:" + map.get("key")).fluentPut("success", StatusCode.SUCCESS);
         }
         return SUCCESS.fluentPut("success", StatusCode.ERROR);
     }
@@ -54,38 +58,33 @@ public class UserServiceImpl extends ServiceImplConfig implements UserService {
         User u = new User();
         u.setUsername(user.getUsername());
         u = userMapperConfig.selectOne(u);
-        if(u != null){
+        if (u != null) {
             return SUCCESS.fluentPut("error", StatusCode.USER_ALREADY_EXISTS).fluentPut("success", StatusCode.ERROR);
         }
-        String bcpePassword = user.getPassword();//new BCryptPasswordEncoder().encode(user.getPassword());
+        String bcpePassword = user.getPassword();
         user.setPassword(bcpePassword);
-        user.setCreateDate(new Date());
+        user.setCreateTime(new Date());
         int count = userMapperConfig.insert(user);
-        if(count == 1){
+        if (count == 1) {
             return SUCCESS.fluentPut("success", StatusCode.SUCCESS);
         }
         return SUCCESS.fluentPut("success", StatusCode.ERROR);
     }
 
     @Override
-    public JSONObject getInfo(String CSRFTOKEN, HttpServletRequest request) {
-        CSRFTOKEN = request.getHeader("x-csrftoken");
-        String userstr = JWTUtil.Payload(CSRFTOKEN.split(":zc:")[0], CSRFTOKEN.split(":zc:")[1]);
-        System.out.println("jedisCluster:::" + jedisCluster.get(CSRFTOKEN.split(":zc:")[0]));
-        User user = JSON.parseObject(userstr, User.class);
-        user = userMapperConfig.selectOne(user);
-
-        if(user != null) {
+    public JSONObject getInfo(User user) {
+        if (user != null) {
             String ujson = JSON.toJSONString(user);
             JSONObject userjson = JSON.parseObject(ujson);
-            Role role = new Role();
-            role.setUserid(user.getAnnalid());
-            List<Role> roles = roleMapperConfig.select(role);
+            Weekend<Role> roleWeekend = Weekend.of(Role.class);
+            WeekendCriteria<Role, Object> roleObjectWeekendCriteria = roleWeekend.weekendCriteria();
+            roleObjectWeekendCriteria.andEqualTo(Role::getUserId, user.getId());
+            List<Role> roles = roleMapperConfig.selectByExample(roleWeekend);
             JSONArray roleArray = new JSONArray();
-            for(Role r : roles){
+            for (Role r : roles) {
                 roleArray.add(r.getCode());
             }
-            Map<String, Object> map =JWTUtil.Encrypted(ujson);
+            Map<String, Object> map = JWTUtil.encrypted(ujson);
             String token = (String) map.get("miwen");
             jedisCluster.set(token, (String) map.get("key"));
             userjson.put("roles", roleArray);

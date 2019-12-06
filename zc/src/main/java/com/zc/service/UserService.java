@@ -11,5 +11,11 @@ public interface UserService {
 
     JSONObject register(User user);
 
-    JSONObject getInfo(String CSRFTOKEN, HttpServletRequest request);
+    /**
+     * 获取用户信息
+     *
+     * @param user
+     * @return
+     */
+    JSONObject getInfo(User user);
 }

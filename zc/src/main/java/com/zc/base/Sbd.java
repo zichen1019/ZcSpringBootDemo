@@ -11,8 +11,10 @@ import javax.persistence.*;
 @Table
 public class Sbd extends Base {
 
-    @ApiModelProperty(required=true, value = "主要数据")
+    @ApiModelProperty(required = true, value = "主要数据")
     @Column(name = "text")
-    @Getter @Setter private String text;
+    @Getter
+    @Setter
+    private String text;
 
 }

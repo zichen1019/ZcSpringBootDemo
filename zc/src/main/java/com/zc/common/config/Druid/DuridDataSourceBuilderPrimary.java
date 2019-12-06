@@ -18,6 +18,7 @@ import javax.sql.DataSource;
 
 /**
  * 此处为注解MapperScan注释
+ *
  * @MapperScan 若使用通用Mapper，则此处导包必须是：import tk.mybatis.spring.annotation.MapperScan;
  */
 @Configuration
@@ -25,23 +26,23 @@ import javax.sql.DataSource;
 public class DuridDataSourceBuilderPrimary {
 
     /**
+     * @return
      * @Bean 将当前方法返回值作为对象
      * @ConfigurationProperties 从application.yml中获取前缀为spring.datasource.druid.primary的数据配置到当前方法中
-     * @return
      */
     @Bean(name = "primaryDruidDataSource")
     @ConfigurationProperties(prefix = "spring.datasource.druid.primary")
     @Primary
-    public DataSource primaryDataSource(){
+    public DataSource primaryDataSource() {
         return DruidDataSourceBuilder.create().build();
     }
 
     /**
-     * @Qualifier   使用注解方式将DataSource的Bean对象primaryDruidDataSource注入到方法参数当中
-     * @Primary     代表当前是默认的数据源
      * @param dataSource
      * @return SqlSessionFactory
      * @throws Exception
+     * @Qualifier 使用注解方式将DataSource的Bean对象primaryDruidDataSource注入到方法参数当中
+     * @Primary 代表当前是默认的数据源
      */
     @Bean(name = "primarySqlSessionFactory")
     @Primary

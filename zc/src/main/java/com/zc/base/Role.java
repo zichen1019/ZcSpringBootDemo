@@ -15,12 +15,14 @@ public class Role extends Base {
 
     @ApiModelProperty("用户ID")
     @Column(name = "user_id")
-    @Getter @Setter
-    private BigInteger userid;
+    @Getter
+    @Setter
+    private Long userId;
 
     @ApiModelProperty("权限代码")
     @Column(name = "code")
-    @Getter @Setter
+    @Getter
+    @Setter
     private String code;
 
 }

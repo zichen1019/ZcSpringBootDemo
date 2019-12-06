@@ -14,16 +14,19 @@ public class DicRole extends Base {
 
     @ApiModelProperty(value = "权限名称")
     @Column(name = "name")
-    @Getter @Setter
+    @Getter
+    @Setter
     private String name;
 
     @ApiModelProperty(value = "权限代码")
     @Column(name = "code")
-    @Getter @Setter
+    @Getter
+    @Setter
     private String code;
 
     @ApiModelProperty(value = "权限描述")
     @Column(name = "describe")
-    @Getter @Setter
+    @Getter
+    @Setter
     private String describe;
 }

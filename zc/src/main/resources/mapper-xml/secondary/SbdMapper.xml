@@ -5,7 +5,7 @@
 <mapper namespace="com.zc.mapper.secondary.SecondarySbdMapperConfig">
 
     <select id="findAll" resultType="com.zc.base.Sbd">
-      select * from sbd
+        select * from sbd
     </select>
 
 </mapper>

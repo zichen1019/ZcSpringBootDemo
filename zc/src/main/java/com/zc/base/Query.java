@@ -11,15 +11,18 @@ import lombok.ToString;
 public class Query {
 
     @ApiParam("当前页数")
-    @Getter @Setter
+    @Getter
+    @Setter
     private int page;
 
     @ApiParam("当前页数据条数")
-    @Getter @Setter
+    @Getter
+    @Setter
     private int limit;
 
     @ApiParam("排序。例如：annalid asc")
-    @Getter @Setter
+    @Getter
+    @Setter
     private String sort;
 
 }

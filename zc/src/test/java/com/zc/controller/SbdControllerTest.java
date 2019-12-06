@@ -17,7 +17,7 @@ public class SbdControllerTest extends ZcApplicationTests {
     public void findAll() {
         System.err.println("findAll()");
         List<Sbd> sbds = sbdService.findAll();
-        for(Sbd sbd : sbds){
+        for (Sbd sbd : sbds) {
             System.err.println(sbd);
         }
     }
@@ -26,7 +26,7 @@ public class SbdControllerTest extends ZcApplicationTests {
     public void findAll2() {
         System.err.println("findAll2()");
         List<Sbd> sbds = sbdService.findAll2();
-        for(Sbd sbd : sbds){
+        for (Sbd sbd : sbds) {
             System.err.println(sbd);
         }
     }

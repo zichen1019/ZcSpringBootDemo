@@ -21,22 +21,23 @@ public class FileUtil {
 
     /**
      * PrintWriter
-     * @param fileName 文件名
+     *
+     * @param fileName    文件名
      * @param contentList 内容List
      * @param autoNewLine 自动换行：是否每行都需要换行
-     * @param append 是否是追加数据
-     * @param autoFlush 自动清空缓存：PrintWriter类与PrintStream类的方法是对应的。有一个不同之外需提请读者注意，就是当PrintWriter的自动清空缓冲区的功能被使用时(构造函数中autoFlush置为true)，
-     *                  仅当println()方法被调用时才自动清缓冲区，而不是像PrintStream一样遇到一个换行符就清缓冲。
+     * @param append      是否是追加数据
+     * @param autoFlush   自动清空缓存：PrintWriter类与PrintStream类的方法是对应的。有一个不同之外需提请读者注意，就是当PrintWriter的自动清空缓冲区的功能被使用时(构造函数中autoFlush置为true)，
+     *                    仅当println()方法被调用时才自动清缓冲区，而不是像PrintStream一样遇到一个换行符就清缓冲。
      */
-    public static void PrintWriter(String fileName, List<String> contentList, boolean autoNewLine, boolean append, boolean autoFlush){
+    public static void printWriter(String fileName, List<String> contentList, boolean autoNewLine, boolean append, boolean autoFlush) {
         checkFloadExists(fileName.substring(0, fileName.lastIndexOf("\\")));
-        PrintWriter pw  = null;
+        PrintWriter pw = null;
         try {
             pw = new PrintWriter(new BufferedWriter(new FileWriter(fileName, append)), autoFlush);
             for (String content : contentList) {
-                if(autoNewLine) {
+                if (autoNewLine) {
                     pw.println(content);
-                }else{
+                } else {
                     pw.print(content);
                 }
             }
@@ -44,16 +45,16 @@ public class FileUtil {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
-            if(pw != null){
+        } finally {
+            if (pw != null) {
                 pw.close();
             }
         }
     }
 
-    public static void PrintWriter(String fileName, String toast, boolean autoNewLine, boolean append, boolean autoFlush){
+    public static void printWriter(String fileName, String toast, boolean autoNewLine, boolean append, boolean autoFlush) {
         checkFloadExists(fileName.substring(0, fileName.lastIndexOf("\\")));
-        PrintWriter pw  = null;
+        PrintWriter pw = null;
         try {
             pw = new PrintWriter(new BufferedWriter(new FileWriter(fileName, append)), autoFlush);
             pw.println(toast);
@@ -61,8 +62,8 @@ public class FileUtil {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
-            if(pw != null){
+        } finally {
+            if (pw != null) {
                 pw.close();
             }
         }
@@ -71,18 +72,19 @@ public class FileUtil {
 
     /**
      * PrintStream
-     * @param fileName 文件名
+     *
+     * @param fileName    文件名
      * @param contentList 内容List
      * @param autoNewLine 自动换行：是否每行都需要换行
-     * @param append 是否是追加数据
-     * @param autoFlush 自动清空缓存：autoFlush置为true时，每当输出遇到换行符，缓冲区的内容就被强制全部输出，如同调用了一次flush()。但要注意，如果没遇到换行符，还是会有数据“憋”在缓冲区里
+     * @param append      是否是追加数据
+     * @param autoFlush   自动清空缓存：autoFlush置为true时，每当输出遇到换行符，缓冲区的内容就被强制全部输出，如同调用了一次flush()。但要注意，如果没遇到换行符，还是会有数据“憋”在缓冲区里
      */
-    public static void PrintStream(String fileName, List<String> contentList, boolean autoNewLine, boolean append, boolean autoFlush){
+    public static void printStream(String fileName, List<String> contentList, boolean autoNewLine, boolean append, boolean autoFlush) {
         checkFloadExists(fileName.substring(0, fileName.lastIndexOf("\\")));
         PrintStream ps = null;
         try {
             ps = new PrintStream(new FileOutputStream(fileName, append), autoFlush);
-            for(String content : contentList) {
+            for (String content : contentList) {
                 if (autoNewLine) {
                     ps.println(content);
                 } else {
@@ -91,14 +93,14 @@ public class FileUtil {
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }finally {
-            if(ps != null){
+        } finally {
+            if (ps != null) {
                 ps.close();
             }
         }
     }
 
-    public static void PrintStream(String fileName, String toast, boolean autoNewLine, boolean append, boolean autoFlush){
+    public static void printStream(String fileName, String toast, boolean autoNewLine, boolean append, boolean autoFlush) {
         checkFloadExists(fileName.substring(0, fileName.lastIndexOf("\\")));
         PrintStream ps = null;
         try {
@@ -106,8 +108,8 @@ public class FileUtil {
             ps.println(toast);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }finally {
-            if(ps != null){
+        } finally {
+            if (ps != null) {
                 ps.close();
             }
         }
@@ -115,24 +117,25 @@ public class FileUtil {
 
     /**
      * 读文件
+     *
      * @param fileName
      * @return
      */
-    public static String readFile(String fileName){
+    public static String readFile(String fileName) {
         StringBuffer sb = new StringBuffer("");
         FileReader input = null;
         BufferedReader reader = null;
-        try{
+        try {
             input = new FileReader(fileName);
             reader = new BufferedReader(input);
             String line = null;
-            while((line = reader.readLine()) != null){
+            while ((line = reader.readLine()) != null) {
                 sb.append(line);
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally{
-            if(null != reader){
+        } finally {
+            if (null != reader) {
                 try {
                     reader.close();
                 } catch (IOException e) {
@@ -140,7 +143,7 @@ public class FileUtil {
                     e.printStackTrace();
                 }
             }
-            if(null != input){
+            if (null != input) {
                 try {
                     input.close();
                 } catch (IOException e) {
@@ -154,11 +157,12 @@ public class FileUtil {
 
     /**
      * 检查路径是否存在，然后创建层级文件夹
+     *
      * @param path 路径
      */
-    public static void checkFloadExists(String path){
+    public static void checkFloadExists(String path) {
         File file = new File(path);
-        if(!file.exists()){
+        if (!file.exists()) {
             file.mkdirs();
         }
     }

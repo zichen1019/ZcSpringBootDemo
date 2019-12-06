@@ -23,8 +23,8 @@ public class TokenServiceImpl extends ServiceImplConfig implements TokenService 
 
         StringBuilder sb = new StringBuilder();
         int zifu = 0;
-
-        for(int i = 0 ;i < 26; i++) {
+        int count = 26;
+        for (int i = 0; i < count; i++) {
             do {
                 zifu = new Random().nextInt(122) + 65;
             } while (zifu == 91 || zifu == 92 || zifu == 93 || zifu == 94 || zifu == 95 || zifu == 96);
@@ -33,11 +33,12 @@ public class TokenServiceImpl extends ServiceImplConfig implements TokenService 
 
         System.out.println("随机name：" + sb.toString());
         u.setUsername(sb.toString());
-        String ujson = JSON.toJSONString(u);
-        Map<String, Object> map = JWTUtil.Encrypted(ujson);
+        String ujson;
+        ujson = JSON.toJSONString(u);
+        Map map = JWTUtil.encrypted(ujson);
         String token = (String) map.get("miwen");
         jedisCluster.set(token, (String) map.get("key"));
-        SUCCESS.put("token", token+":zc:"+map.get("key"));
+        SUCCESS.put("token", token + ":zc:" + map.get("key"));
         return SUCCESS;
     }
 
